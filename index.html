@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1320px;
+            height: 903px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/mediantipfareratio_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:2
+        }).fitBounds([[40.63051894398389,-74.06401653333207],[40.86151905168772,-73.72610516601391]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_mediantipfareratio_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><b>Number of fares: </b>' + (feature.properties['tipfare_ratio_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><b>Median ratio of tip to fare: </b>' + (feature.properties['tipfare_ratio_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_ratio_median'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_mediantipfareratio_1_0(feature) {
+            if (feature.properties['tipfare_ratio_median'] >= 0.000000 && feature.properties['tipfare_ratio_median'] <= 0.030303 ) {
+                return {
+                pane: 'pane_mediantipfareratio_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,255,228,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.030303 && feature.properties['tipfare_ratio_median'] <= 0.096154 ) {
+                return {
+                pane: 'pane_mediantipfareratio_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(199,233,192,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.096154 && feature.properties['tipfare_ratio_median'] <= 0.145671 ) {
+                return {
+                pane: 'pane_mediantipfareratio_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(116,196,118,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.145671 && feature.properties['tipfare_ratio_median'] <= 0.184659 ) {
+                return {
+                pane: 'pane_mediantipfareratio_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(35,139,69,0.6)',
+            }
+            }
+            if (feature.properties['tipfare_ratio_median'] >= 0.184659 && feature.properties['tipfare_ratio_median'] <= 0.232715 ) {
+                return {
+                pane: 'pane_mediantipfareratio_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,0.6)',
+            }
+            }
+        }
+        map.createPane('pane_mediantipfareratio_1');
+        map.getPane('pane_mediantipfareratio_1').style.zIndex = 401;
+        map.getPane('pane_mediantipfareratio_1').style['mix-blend-mode'] = 'normal';
+        var layer_mediantipfareratio_1 = new L.geoJson(json_mediantipfareratio_1, {
+            attribution: '',
+            pane: 'pane_mediantipfareratio_1',
+            onEachFeature: pop_mediantipfareratio_1,
+            style: style_mediantipfareratio_1_0,
+        });
+        bounds_group.addLayer(layer_mediantipfareratio_1);
+        map.addLayer(layer_mediantipfareratio_1);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'median tip fare ratio<br /><table><tr><td style="text-align: center;"><img src="legend/mediantipfareratio_1_000000300.png" /></td><td>0.000 - 0.030</td></tr><tr><td style="text-align: center;"><img src="legend/mediantipfareratio_1_003000961.png" /></td><td>0.030 - 0.096</td></tr><tr><td style="text-align: center;"><img src="legend/mediantipfareratio_1_009601462.png" /></td><td>0.096 - 0.146</td></tr><tr><td style="text-align: center;"><img src="legend/mediantipfareratio_1_014601853.png" /></td><td>0.146 - 0.185</td></tr><tr><td style="text-align: center;"><img src="legend/mediantipfareratio_1_018502334.png" /></td><td>0.185 - 0.233</td></tr></table>': layer_mediantipfareratio_1,"OSM Standard": layer_OSMStandard_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
